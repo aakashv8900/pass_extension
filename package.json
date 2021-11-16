@@ -1,0 +1,22 @@
+{
+  "name": "pass_extension",
+  "version": "1.0.0",
+  "description": "A password helper extension.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aakashv8900/pass_extension.git"
+  },
+  "author": "Aakash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aakashv8900/pass_extension/issues"
+  },
+  "homepage": "https://github.com/aakashv8900/pass_extension#readme",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  }
+}
