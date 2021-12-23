@@ -1,6 +1,11 @@
-const http = require("http");
 const crypto = require("crypto");
 const path = require("path");
+const express = require("express");
+
+const staticPath = path.join(__dirname, "../public");
+
+const app = express();
+app.use(express.static(staticPath));
 
 
 const algorithm = "aes-256-cbc"
@@ -9,13 +14,6 @@ const Securitykey = crypto.randomBytes(32)
 const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector)
 const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector)
 
-
-const server = http.createServer((req, res) => {
-    if(req.url == "/"){
-        res.writeHead(200, {"Content-type":"text/html"});
-        res.sendFile(path.join(__dirname+'/index.html'));
-    }
-});
 
 
 // let encryptedData = cipher.update(text, "utf-8", "hex")
@@ -35,6 +33,10 @@ const server = http.createServer((req, res) => {
 //     alert('Decryption')
 // }
 
-server.listen(8000, "127.0.0.1", () => {
+app.get("/", (req, res) => {
+    app.send();
+})
+
+app.listen(8000, "127.0.0.1", () => {
     console.log("Listening");
 });
