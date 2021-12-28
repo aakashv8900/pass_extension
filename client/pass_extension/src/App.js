@@ -5,11 +5,11 @@ import axios from 'axios'
 function Encrypter() {
 
   const [pass, setPass] = useState("");
-  const [home, setHome] = useState("");
+  const [cipher, setCipherData] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:8000/home").then(function(response) {
-      setHome(response.data)
+      setCipherData(response.data)
     })
   }, [])
 
@@ -21,9 +21,26 @@ function Encrypter() {
         pass
       })
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
   }
+
+  // async function fetchPass(e) {
+  //   e.preventDefault()
+
+  //   try{
+  //     await axios.get("http://localhost:8000/home").then((response)=>{
+  //       setCipherData(response.data)
+  //       console.log(response)
+  //   })
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  function refreshPage(){
+    window.location.reload();
+}
 
   return (
     <div className='App'>
@@ -36,10 +53,10 @@ function Encrypter() {
       </div>
 
       <div className='form-group form-button' id='form-group form-button'>
-        <input type='submit' name='encrypt' id='encrypt' value='Encrypt'/>
+        <button type='submit' name='encrypt' id='encrypt' value='Encrypt' onClick={refreshPage}>Encrypt</button>
       </div>
     </form>
-    {home}
+    <h3>{cipher}</h3>
     </div>
   );
 }

@@ -1,8 +1,23 @@
-const crypto = require("crypto");
 const express = require("express");
 const cors = require("cors")
 const port = 8000
 
+function cipher(str) {
+    
+    var alphabets =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'," ", "-", "_", ".", "&","?", "!", "@", "#", "/"];
+    
+    var alphabetscipher = ['B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a'," ", "-", "_", ".", "&","?", "!", "@", "#", "/"];
+    
+    var resultStr = [];
+    for(let i=0; i<str.length; i++){
+        for(let j =0; j<alphabets.length; j++){
+            if(str[i] === alphabets[j]){
+            resultStr.push(alphabetscipher[j]);
+            }
+        }
+    }
+    return resultStr.join("");
+  };
 
 const app = express();
 app.use(express.urlencoded({ extended:true }))
@@ -11,14 +26,6 @@ app.use(cors())
 
 let encryptedData
 
-const algorithm = "aes-256-cbc"
-const initVector = crypto.randomBytes(16)
-const Securitykey = crypto.randomBytes(32)
-const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector)
-// const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector)
-// let decryptedData = decipher.update(encryptedData, "hex", "utf-8")
-// decryptedData += decipher.final("utf8")
-
 app.get("/", cors(), async (req, res) => {
     res.send("This is working");
 })
@@ -26,12 +33,10 @@ app.get("/", cors(), async (req, res) => {
 app.post("/post_pass", cors(), async (req, res) => {
     let name = req.body
     for (let value of Object.values(name)) {
-        encryptedData = cipher.update(value, "utf-8", "hex")
-        encryptedData += cipher.final("hex")
+        encryptedData = cipher(value);
     }
     console.log(encryptedData);
-    // console.log(name);
-    // console.log(encryptedData);
+    res.send(encryptedData);
 })
 
 app.get("/home", cors(), async (req, res) => {

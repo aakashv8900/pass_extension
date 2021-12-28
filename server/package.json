@@ -23,5 +23,8 @@
     "http": "^0.0.1-security",
     "nodemon": "^2.0.15",
     "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
   }
 }
