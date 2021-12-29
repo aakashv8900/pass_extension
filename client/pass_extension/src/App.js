@@ -25,19 +25,6 @@ function Encrypter() {
     }
   }
 
-  // async function fetchPass(e) {
-  //   e.preventDefault()
-
-  //   try{
-  //     await axios.get("http://localhost:8000/home").then((response)=>{
-  //       setCipherData(response.data)
-  //       console.log(response)
-  //   })
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   function refreshPage(){
     window.location.reload();
 }
@@ -45,18 +32,21 @@ function Encrypter() {
   return (
     <div className='App'>
     <form className='form' id='form' onSubmit={postPass}>
-
-      <label>Encryption & Decryption</label>
+      <div className='heads' id='heads'>
+        <h2>Password Encrypter</h2>
+      </div>
 
       <div className='form-group' id='form-group'>
         <input type='text' name='pass' id='name' placeholder='Password' value={pass} onChange={(e) => setPass(e.target.value)} />
       </div>
 
-      <div className='form-group form-button' id='form-group form-button'>
+      <div className='form-group-form-button' id='form-group-form-button'>
         <button type='submit' name='encrypt' id='encrypt' value='Encrypt' onClick={refreshPage}>Encrypt</button>
       </div>
     </form>
-    <h3>{cipher}</h3>
+    <div className='data' id='data'>
+      <h3>{cipher}</h3>
+    </div>
     </div>
   );
 }

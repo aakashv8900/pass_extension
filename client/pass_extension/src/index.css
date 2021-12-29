@@ -13,17 +13,43 @@ code {
     monospace;
 }
 
-label {
+.heads {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+h2 {
   font-weight: bold;
-  width: 100%;
+  font-size: 300%;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
 }
 
 input[type=text] {
-  width: 100%;
+  width: 25%;
   padding: 10px;
   box-sizing: border-box;
   border: 2px solid #2E4053;
   margin-bottom: 4px;
+}
+
+input[type="text"]::placeholder { 
+  text-align: center;
+}
+
+input[type="text"]:-ms-input-placeholder {
+  text-align: center;
+}
+
+.form-group-form-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }
 
 button {
@@ -36,3 +62,7 @@ button {
   background: #FF0049;
 }
 
+.data {
+  display: flex;
+  justify-content: center;
+}
